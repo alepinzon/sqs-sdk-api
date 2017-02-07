@@ -1,4 +1,4 @@
-package org.example.sqs.jms;
+package org.example.sqs.listeners;
 
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Service;
@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import javax.jms.JMSException;
 
 @Service
-public class JmsExampleListener {
+public class JmsListenerSample {
 
     @JmsListener(destination = "test-sdk")
     public void readMessage(String requestJSON) throws JMSException {

@@ -1,9 +1,9 @@
-package org.example.sqs;
+package org.example.sqs.dtos;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-public class CreateMessage {
+public class SimpleMessage {
 
     @NotNull
     @NotEmpty

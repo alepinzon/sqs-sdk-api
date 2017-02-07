@@ -1,8 +1,9 @@
-package org.example.sqs;
+package org.example.sqs.controllers;
 
 import com.amazonaws.services.sqs.AmazonSQS;
 import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
 import com.amazonaws.services.sqs.model.*;
+import org.example.sqs.dtos.SimpleMessage;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-public class SimpleQueueServiceSample {
+public class SqsQueueController {
 
 
     private static final String DEFAULT_QUEUE_NAME = "test-sdk";
@@ -29,7 +30,7 @@ public class SimpleQueueServiceSample {
             path = "/sqs/message",
             method = RequestMethod.POST,
     consumes = MediaType.APPLICATION_JSON_VALUE)
-    public HttpEntity addMessage(@RequestBody  @Valid CreateMessage createMessage){
+    public HttpEntity addMessage(@RequestBody  @Valid SimpleMessage simpleMessage){
 
         AmazonSQS sqs = AmazonSQSClientBuilder.defaultClient();
         GetQueueUrlResult getQueueUrlResult = sqs.getQueueUrl(DEFAULT_QUEUE_NAME);
@@ -37,7 +38,7 @@ public class SimpleQueueServiceSample {
 
         SendMessageRequest sendMessageRequest = new SendMessageRequest();
         sendMessageRequest.setQueueUrl(queueUrl);
-        sendMessageRequest.setMessageBody(createMessage.getMessage());
+        sendMessageRequest.setMessageBody(simpleMessage.getMessage());
 
         SendMessageResult messageResult = sqs.sendMessage(sendMessageRequest);
 

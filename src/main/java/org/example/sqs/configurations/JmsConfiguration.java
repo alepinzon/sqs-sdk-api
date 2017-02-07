@@ -1,7 +1,6 @@
-package org.example.sqs.jms;
+package org.example.sqs.configurations;
 
 import com.amazon.sqs.javamessaging.SQSConnectionFactory;
-import com.amazonaws.auth.PropertiesFileCredentialsProvider;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
 import com.amazonaws.regions.Region;
 import com.amazonaws.regions.Regions;
@@ -16,7 +15,7 @@ import javax.jms.Session;
 
 @Configuration
 @EnableJms
-public class JmsConfig {
+public class JmsConfiguration {
 
     SQSConnectionFactory connectionFactory =
             SQSConnectionFactory.builder()
